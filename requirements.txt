@@ -1,0 +1,10 @@
+python-dotenv==1.0.0
+python-telegram-bot==20.4
+scrapy==2.10.0
+requests==2.31.0
+
+flake8==3.9.2
+flake8-broken-line
+flake8-return
+flake8-isort==5.0.3
+pep8-naming
