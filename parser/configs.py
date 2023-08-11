@@ -1,12 +1,14 @@
 import logging
 
-LOG_FORMAT = '"%(asctime)s - [%(levelname)s] - %(message)s"'
-LOG_DATE_FORMAT = '%d.%m.%Y %H:%M:%S'
+from constants import DATETIME_FORMAT
+
+DEBUG = True
+LOGFORMAT = '%(asctime)s [%(levelname)s] %(filename)s/%(funcName)s %(message)s'
 
 
 def configure_logging():
     logging.basicConfig(
-        datefmt=LOG_DATE_FORMAT,
-        format=LOG_FORMAT,
+        datefmt=DATETIME_FORMAT,
+        format=LOGFORMAT,
         level=logging.INFO,
     )

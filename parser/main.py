@@ -16,8 +16,8 @@ def main():
     logging.info(START_MESSAGE)
     try:
         dates = get_sessions_dates()
-        for date in dates[:1]:
-            print(get_movies(CINEMA_URL + date))
+        for date in dates[:1]:                              # delete
+            print(*get_movies(CINEMA_URL + date), sep='\n')
     except Exception as error:
         logging.error(ERROR_MESSAGE.format(error=error))
     date_time = (dt.datetime.now() + dt.timedelta(days=3)).strftime(

@@ -1,12 +1,13 @@
 import time
 
-from constants import CINEMA_URL, DEBUG, PAUSE_DURATION, SCREEN_RESOLUTION
+from configs import DEBUG
+from constants import CINEMA_URL, PAUSE_DURATION, SCREEN_RESOLUTION
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 CSS_DATES = 'div.calendar div button'
 CSS_MOVIES = 'div.daily-seance-item__seance-title'
-RESPONSE_ERROR_MESSAGE = 'An error {error} occurred when loading the page{url}'
+ERROR_MESSAGE = 'An error {error} occurred when loading the page {url}'
 
 
 def get_sessions_dates():
@@ -21,7 +22,7 @@ def get_sessions_dates():
         return result
     except Exception as error:
         raise ConnectionError(
-            RESPONSE_ERROR_MESSAGE.format(url=CINEMA_URL, error=error)
+            ERROR_MESSAGE.format(url=CINEMA_URL, error=error)
         )
 
 
@@ -37,5 +38,5 @@ def get_movies(url):
         return sorted(set(result))
     except Exception as error:
         raise ConnectionError(
-            RESPONSE_ERROR_MESSAGE.format(url=url, error=error)
+            ERROR_MESSAGE.format(url=url, error=error)
         )
