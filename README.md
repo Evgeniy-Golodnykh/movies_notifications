@@ -8,3 +8,6 @@ Python, Selenium, Python Telegram Bot, Docker, GitHub Actions
 
 ### Author
 [Evgeniy Golodnykh](https://github.com/Evgeniy-Golodnykh)
+
+### CI/CD pipeline status
+![movies_notifications_workflow](https://github.com/Evgeniy-Golodnykh/movies_notification/actions/workflows/movies_notifications_workflow.yml/badge.svg)
