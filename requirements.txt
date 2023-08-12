@@ -1,6 +1,7 @@
 python-dotenv==1.0.0
 python-telegram-bot==20.4
 selenium==4.11.2
+sqlalchemy==2.0.19
 
 flake8==3.9.2
 flake8-broken-line

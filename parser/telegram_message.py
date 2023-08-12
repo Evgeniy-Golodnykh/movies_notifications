@@ -1,4 +1,3 @@
-import asyncio
 import os
 
 import telegram
@@ -19,10 +18,6 @@ def check_tokens():
 async def send_message(message):
     """Send message to Telegram user"""
 
-    async with telegram.Bot(token=TELEGRAM_TOKEN) as bot:
-        await bot.send_message(TELEGRAM_USER, message)
-
-
-if __name__ == '__main__':
     if check_tokens():
-        asyncio.run(send_message('test message'))
+        async with telegram.Bot(token=TELEGRAM_TOKEN) as bot:
+            await bot.send_message(TELEGRAM_USER, message)
