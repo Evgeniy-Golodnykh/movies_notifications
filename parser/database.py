@@ -1,4 +1,6 @@
+from configs import DEBUG, POSTGRES_DB
 from sqlalchemy import Column, Integer, String, create_engine
+from sqlalchemy.engine.url import URL
 from sqlalchemy.orm import Session, declarative_base
 
 Base = declarative_base()
@@ -15,7 +17,9 @@ class Movie(Base):
 
 
 def add_to_db(item):
-    engine = create_engine('sqlite:///sqlite.db')
+    engine = create_engine(
+        'sqlite:///sqlite.db' if DEBUG else URL.create(**POSTGRES_DB)
+    )
     Base.metadata.create_all(engine)
     session = Session(engine)
     name, url = item

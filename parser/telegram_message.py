@@ -1,12 +1,5 @@
-import os
-
 import telegram
-from dotenv import load_dotenv
-
-load_dotenv()
-
-TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
-TELEGRAM_USER = os.getenv('TELEGRAM_USER')
+from constants import TELEGRAM_TOKEN, TELEGRAM_USER
 
 
 def check_tokens():
