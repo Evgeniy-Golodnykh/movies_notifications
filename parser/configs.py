@@ -5,7 +5,7 @@ from constants import (
     POSTGRES_PASSWORD, POSTGRES_USER,
 )
 
-DEBUG = True
+DEBUG = False
 LOGFORMAT = '%(asctime)s [%(levelname)s] %(filename)s/%(funcName)s %(message)s'
 
 POSTGRES_DB = {
