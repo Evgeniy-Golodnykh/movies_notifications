@@ -3,7 +3,6 @@ import logging
 from constants import CINEMA_URL, PAUSE_DURATION
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 CSS_MOVIES_URL = '.releases-item '
 CSS_MOVIES_NAME = 'div.releases-item-description__title'
@@ -25,9 +24,7 @@ def get_movies():
     options.add_argument('--window-size=1920,1080')'''
 
     try:
-        browser = webdriver.Chrome(
-            options=options, desired_capabilities=DesiredCapabilities.CHROME
-        )
+        browser = webdriver.Chrome(options=options)
         browser.set_page_load_timeout(PAUSE_DURATION)
         browser.implicitly_wait(PAUSE_DURATION)
         browser.get(CINEMA_URL)
