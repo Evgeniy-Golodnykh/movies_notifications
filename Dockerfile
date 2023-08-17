@@ -10,8 +10,8 @@ RUN echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/so
 RUN apt-get update -y
 RUN apt-get install -y google-chrome-stable
 # Find Chromedriver Version
-RUN CHROME_VERSION=$(google-chrome --product-version | grep -o "[^\.]*\.[^\.]*\.[^\.]*")
-RUN DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
+ENV CHROME_VERSION=$(google-chrome --product-version | grep -o "[^\.]*\.[^\.]*\.[^\.]*")
+ENV DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
 # Download and install Chromedriver
 RUN wget -q --continue -P /chromedriver "http://chromedriver.storage.googleapis.com/$DRIVER_VERSION/chromedriver_linux64.zip"
 RUN unzip /chromedriver/chromedriver* -d /chromedriver
