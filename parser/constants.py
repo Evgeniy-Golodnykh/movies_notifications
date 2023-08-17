@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 CINEMA_URL = 'https://radygakino.ru/'
-SCREEN_RESOLUTION = (1920, 1080)
 
 DRIVER_NAME = os.getenv('DRIVER_NAME')
 DB_HOST = os.getenv('DB_HOST')

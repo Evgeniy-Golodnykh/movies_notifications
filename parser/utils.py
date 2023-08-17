@@ -1,6 +1,6 @@
 import time
 
-from constants import CINEMA_URL, PAUSE_DURATION, SCREEN_RESOLUTION
+from constants import CINEMA_URL, PAUSE_DURATION
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
@@ -16,12 +16,13 @@ def get_movies():
     options.add_argument('--disable-gpu')
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--headless')
+    options.add_argument('--start-maximized')
     try:
         browser = webdriver.Chrome(options=options)
-        browser.set_window_size(*SCREEN_RESOLUTION)
         browser.get(CINEMA_URL)
         time.sleep(PAUSE_DURATION)
         movies = browser.find_elements(By.CSS_SELECTOR, CSS_MOVIES_URL)
+        print(movies)
         results = [
             (movie.find_element(By.CSS_SELECTOR, CSS_MOVIES_NAME).text.strip(),
              movie.get_attribute('href').split('?')[0])
