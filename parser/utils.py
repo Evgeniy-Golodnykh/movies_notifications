@@ -3,6 +3,7 @@ import logging
 from constants import CINEMA_URL, PAUSE_DURATION
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 CSS_MOVIES_URL = '.releases-item '
 CSS_MOVIES_NAME = 'div.releases-item-description__title'
@@ -13,7 +14,7 @@ def get_movies():
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')
     options.add_argument('--no-sandbox')
-    options.add_argument('--disable-gpu')
+    '''options.add_argument('--disable-gpu')
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--disable-extensions')
     options.add_argument('--ignore-certificate-errors')
@@ -21,15 +22,17 @@ def get_movies():
     options.add_argument('--disable-web-security')
     options.add_argument("--proxy-server='direct://'")
     options.add_argument('--proxy-bypass-list=*')
-    options.add_argument('--window-size=1920,1080')
+    options.add_argument('--window-size=1920,1080')'''
 
     try:
-        browser = webdriver.Chrome(options=options)
+        browser = webdriver.Chrome(
+            options=options, desired_capabilities=DesiredCapabilities.CHROME
+        )
         browser.set_page_load_timeout(PAUSE_DURATION)
         browser.implicitly_wait(PAUSE_DURATION)
         browser.get(CINEMA_URL)
         movies = browser.find_elements(By.CSS_SELECTOR, CSS_MOVIES_URL)
-        logging.info(browser.title)
+        logging.info(f'Some information - {browser.title}')
         results = [
             (movie.find_element(By.CSS_SELECTOR, CSS_MOVIES_NAME).text.strip(),
              movie.get_attribute('href').split('?')[0])
