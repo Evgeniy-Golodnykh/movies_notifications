@@ -1,4 +1,4 @@
-FROM joyzoursky/python-chromedriver:3.9
+FROM joyzoursky/python-chromedriver:latest
 
 WORKDIR /app
 

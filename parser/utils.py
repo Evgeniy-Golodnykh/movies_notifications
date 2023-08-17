@@ -1,5 +1,6 @@
 import time
 
+from configs import DEBUG
 from constants import CINEMA_URL, PAUSE_DURATION, SCREEN_RESOLUTION
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -11,7 +12,7 @@ ERROR_MESSAGE = 'An error {error} occurred when loading the page {url}'
 
 def get_movies():
     try:
-        browser = webdriver.Chrome()
+        browser = webdriver.Safari() if DEBUG else webdriver.Chrome()
         browser.set_window_size(*SCREEN_RESOLUTION)
         browser.get(CINEMA_URL)
         time.sleep(PAUSE_DURATION)
