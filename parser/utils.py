@@ -1,5 +1,4 @@
 import logging
-import time
 
 from constants import CINEMA_URL, PAUSE_DURATION
 from selenium import webdriver
@@ -13,20 +12,22 @@ ERROR_MESSAGE = 'An error {error} occurred when loading the page {url}'
 
 def get_movies():
     options = Options()
-    options.add_experimental_option('detach', True)
     options.add_argument('--headless')
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-gpu')
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--disable-extensions')
     options.add_argument('--ignore-certificate-errors')
+    options.add_argument('--ignore-ssl-errors')
+    options.add_argument('--disable-web-security')
     options.add_argument("--proxy-server='direct://'")
     options.add_argument('--proxy-bypass-list=*')
     options.add_argument('--window-size=1920,1080')
     try:
         browser = webdriver.Chrome(options=options)
+        browser.set_page_load_timeout(PAUSE_DURATION)
+        browser.implicitly_wait(PAUSE_DURATION)
         browser.get(CINEMA_URL)
-        time.sleep(PAUSE_DURATION)
         movies = browser.find_elements(By.CSS_SELECTOR, CSS_MOVIES_URL)
         logging.info(f'collected some items - {movies}')
         results = [
