@@ -13,7 +13,7 @@ ERROR_MESSAGE = 'An error {error} occurred when loading the page {url}'
 def get_movies():
     options = Options()
     options.add_argument('--no-sandbox')
-    # options.add_argument('--disable-gpu')
+    options.add_argument('--disable-gpu')
     options.add_argument('--disable-dev-shm-usage')
     # options.add_argument('--headless')
     options.add_argument('--start-maximized')
@@ -22,7 +22,7 @@ def get_movies():
         browser.get(CINEMA_URL)
         time.sleep(PAUSE_DURATION)
         movies = browser.find_elements(By.CSS_SELECTOR, CSS_MOVIES_URL)
-        print(movies)
+        print(f'collected some items - {movies}')
         results = [
             (movie.find_element(By.CSS_SELECTOR, CSS_MOVIES_NAME).text.strip(),
              movie.get_attribute('href').split('?')[0])
