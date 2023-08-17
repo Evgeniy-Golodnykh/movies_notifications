@@ -1,4 +1,3 @@
-import logging
 import time
 
 from constants import CINEMA_URL, PAUSE_DURATION
@@ -13,23 +12,17 @@ ERROR_MESSAGE = 'An error {error} occurred when loading the page {url}'
 def get_movies():
     options = webdriver.FirefoxOptions()
     options.add_argument('--headless')
-    '''options.add_argument('--no-sandbox')
+    options.add_argument('--no-sandbox')
     options.add_argument('--disable-gpu')
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--disable-extensions')
-    options.add_argument('--ignore-certificate-errors')
-    options.add_argument('--ignore-ssl-errors')
-    options.add_argument('--disable-web-security')
-    options.add_argument("--proxy-server='direct://'")
-    options.add_argument('--proxy-bypass-list=*')
-    options.add_argument('--window-size=1920,1080')'''
+    options.add_argument('--window-size=1920,1080')
 
     try:
         browser = webdriver.Firefox(options=options)
         browser.get(CINEMA_URL)
         time.sleep(PAUSE_DURATION)
         movies = browser.find_elements(By.CSS_SELECTOR, CSS_MOVIES_URL)
-        logging.info(f'Some information - {browser.title}')
         results = [
             (movie.find_element(By.CSS_SELECTOR, CSS_MOVIES_NAME).text.strip(),
              movie.get_attribute('href').split('?')[0])
