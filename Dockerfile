@@ -7,12 +7,12 @@ RUN echo "deb http://deb.debian.org/debian/ unstable main contrib non-free" >> /
 RUN apt-get update
 RUN apt-get install -y libcrypt1
 RUN apt-get install -y firefox
-RUN apt-get update
-RUN apt-get install -y --no-install-recommends
-RUN ca-certificates curl firefox-esr
-RUN rm -fr /var/lib/apt/lists/*
-RUN curl -L https://github.com/mozilla/geckodriver/releases/download/v0.33.0/geckodriver-v0.33.0-linux64.tar.gz | tar xz -C /usr/local/bin
-RUN apt-get purge -y ca-certificates curl
+RUN apt-get update                             \
+ && apt-get install -y --no-install-recommends \
+    ca-certificates curl firefox-esr           \
+ && rm -fr /var/lib/apt/lists/*                \
+ && curl -L https://github.com/mozilla/geckodriver/releases/download/v0.33.0/geckodriver-v0.33.0-linux64.tar.gz | tar xz -C /usr/local/bin \
+ && apt-get purge -y ca-certificates curl
 
 # Install the requirements package and copy parser script
 WORKDIR /app
