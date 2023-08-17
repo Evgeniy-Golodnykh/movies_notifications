@@ -25,7 +25,7 @@ def get_movies():
     options.add_argument('--window-size=1920,1080')'''
 
     try:
-        browser = webdriver.Chrome()
+        browser = webdriver.Firefox()
         browser.get(CINEMA_URL)
         time.sleep(PAUSE_DURATION)
         movies = browser.find_elements(By.CSS_SELECTOR, CSS_MOVIES_URL)
