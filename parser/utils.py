@@ -13,12 +13,13 @@ ERROR_MESSAGE = 'An error {error} occurred when loading the page {url}'
 
 def get_movies():
     options = Options()
+    options.add_experimental_option('detach', True)
+    options.add_argument('--headless')
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-gpu')
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--disable-extensions')
     options.add_argument('--ignore-certificate-errors')
-    options.add_argument('--headless')
     options.add_argument("--proxy-server='direct://'")
     options.add_argument('--proxy-bypass-list=*')
     options.add_argument('--window-size=1920,1080')
