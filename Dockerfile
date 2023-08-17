@@ -9,11 +9,11 @@ RUN echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/so
 # Update the package list and install chrome
 RUN apt-get update -y
 RUN apt-get install -y google-chrome-stable
-# Find Chromedriver Version
-ENV CHROME_VERSION $(google-chrome --product-version | grep -o "[^\.]*\.[^\.]*\.[^\.]*")
-ENV DRIVER_VERSION $(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
+
 # Download and install Chromedriver
-RUN wget -q --continue -P /chromedriver "http://chromedriver.storage.googleapis.com/$DRIVER_VERSION/chromedriver_linux64.zip"
+RUN CHROME_VERSION=$(google-chrome --product-version | grep -o "[^\.]*\.[^\.]*\.[^\.]*") && \
+    CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION") && \
+    wget -q --continue -P /chromedriver "http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
 RUN unzip /chromedriver/chromedriver* -d /chromedriver
 # Set display port as an environment variable
 ENV DISPLAY=:99
