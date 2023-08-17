@@ -25,8 +25,8 @@ def get_movies():
 
     try:
         browser = webdriver.Chrome(options=options)
-        browser.set_page_load_timeout(PAUSE_DURATION)
         browser.get(CINEMA_URL)
+        browser.set_page_load_timeout(PAUSE_DURATION)
         movies = browser.find_elements(By.CSS_SELECTOR, CSS_MOVIES_URL)
         logging.info(f'Some information - {browser.title}')
         results = [
