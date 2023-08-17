@@ -1,6 +1,5 @@
 import time
 
-from configs import DEBUG
 from constants import CINEMA_URL, PAUSE_DURATION, SCREEN_RESOLUTION
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -18,9 +17,7 @@ def get_movies():
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--headless')
     try:
-        browser = (
-            webdriver.Safari() if DEBUG else webdriver.Chrome(options=options)
-        )
+        browser = webdriver.Chrome(options=options)
         browser.set_window_size(*SCREEN_RESOLUTION)
         browser.get(CINEMA_URL)
         time.sleep(PAUSE_DURATION)

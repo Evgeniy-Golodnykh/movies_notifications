@@ -5,9 +5,6 @@ from constants import (
     POSTGRES_PASSWORD, POSTGRES_USER,
 )
 
-DEBUG = True
-LOGFORMAT = '%(asctime)s [%(levelname)s] %(filename)s/%(funcName)s %(message)s'
-
 POSTGRES_DB = {
     'drivername': DRIVER_NAME,
     'host': DB_HOST,
@@ -16,6 +13,8 @@ POSTGRES_DB = {
     'password': POSTGRES_PASSWORD,
     'database': DATABASE_NAME,
 }
+
+LOGFORMAT = '%(asctime)s [%(levelname)s] %(filename)s/%(funcName)s %(message)s'
 
 
 def configure_logging():
