@@ -11,7 +11,7 @@ ERROR_MESSAGE = 'An error {error} occurred when loading the page {url}'
 
 
 def get_movies():
-    options = webdriver.ChromeOptions()
+    '''    options = webdriver.ChromeOptions()
     options.add_argument('--headless')
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-gpu')
@@ -22,10 +22,10 @@ def get_movies():
     options.add_argument('--disable-web-security')
     options.add_argument("--proxy-server='direct://'")
     options.add_argument('--proxy-bypass-list=*')
-    options.add_argument('--window-size=1920,1080')
+    options.add_argument('--window-size=1920,1080')'''
 
     try:
-        browser = webdriver.Chrome(options=options)
+        browser = webdriver.Chrome()
         browser.get(CINEMA_URL)
         time.sleep(PAUSE_DURATION)
         movies = browser.find_elements(By.CSS_SELECTOR, CSS_MOVIES_URL)
