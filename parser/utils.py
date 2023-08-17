@@ -1,3 +1,4 @@
+import logging
 import time
 
 from constants import CINEMA_URL, PAUSE_DURATION
@@ -23,6 +24,7 @@ def get_movies():
         browser.get(CINEMA_URL)
         time.sleep(PAUSE_DURATION)
         movies = browser.find_elements(By.CSS_SELECTOR, CSS_MOVIES_URL)
+        logging.info(f'Some information - {browser.title}')
         results = [
             (movie.find_element(By.CSS_SELECTOR, CSS_MOVIES_NAME).text.strip(),
              movie.get_attribute('href').split('?')[0])
