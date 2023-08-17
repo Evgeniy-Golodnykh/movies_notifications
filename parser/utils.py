@@ -3,6 +3,7 @@ import time
 from configs import DEBUG
 from constants import CINEMA_URL, PAUSE_DURATION, SCREEN_RESOLUTION
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 
 CSS_MOVIES_URL = '.releases-item '
@@ -11,21 +12,27 @@ ERROR_MESSAGE = 'An error {error} occurred when loading the page {url}'
 
 
 def get_movies():
+    options = Options()
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-gpu')
+    options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--headless')
     try:
-        browser = webdriver.Safari() if DEBUG else webdriver.Chrome()
+        browser = (
+            webdriver.Safari() if DEBUG else webdriver.Chrome(options=options)
+        )
         browser.set_window_size(*SCREEN_RESOLUTION)
         browser.get(CINEMA_URL)
         time.sleep(PAUSE_DURATION)
         movies = browser.find_elements(By.CSS_SELECTOR, CSS_MOVIES_URL)
-        return [
+        results = [
             (movie.find_element(By.CSS_SELECTOR, CSS_MOVIES_NAME).text.strip(),
              movie.get_attribute('href').split('?')[0])
             for movie in movies
         ]
+        browser.close()
+        return results
     except Exception as error:
         raise ConnectionError(
             ERROR_MESSAGE.format(error=error, url=CINEMA_URL)
         )
-    finally:
-        browser.close()
-        browser.quit()
