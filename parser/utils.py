@@ -19,6 +19,8 @@ def get_movies():
     options.add_argument('--disable-extensions')
     options.add_argument('--ignore-certificate-errors')
     options.add_argument('--headless')
+    options.add_argument("--proxy-server='direct://'")
+    options.add_argument('--proxy-bypass-list=*')
     options.add_argument('--window-size=1920,1080')
     try:
         browser = webdriver.Chrome(options=options)
