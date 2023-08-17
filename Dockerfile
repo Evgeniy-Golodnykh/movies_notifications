@@ -1,5 +1,7 @@
 FROM joyzoursky/python-chromedriver:latest
 
+USER root
+
 WORKDIR /app
 
 COPY requirements.txt .
