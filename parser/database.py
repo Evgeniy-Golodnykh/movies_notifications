@@ -4,10 +4,11 @@ from sqlalchemy.engine.url import URL
 from sqlalchemy.orm import Session, declarative_base
 
 Base = declarative_base()
-DEBUG = True
 
 
 class Movie(Base):
+    """Movie model."""
+
     __tablename__ = 'movie'
     id = Column(Integer, primary_key=True)
     name = Column(String(200), unique=True)
@@ -18,9 +19,9 @@ class Movie(Base):
 
 
 def add_to_db(item):
-    engine = create_engine(
-        'sqlite:///sqlite.db' if DEBUG else URL.create(**POSTGRES_DB)
-    )
+    """Add Movie instance to database."""
+
+    engine = create_engine(URL.create(**POSTGRES_DB))
     Base.metadata.create_all(engine)
     session = Session(engine)
     name, url = item

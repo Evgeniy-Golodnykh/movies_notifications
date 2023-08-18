@@ -11,6 +11,8 @@ ERROR_MESSAGE = 'An error {error} occurred when loading the page {url}'
 
 
 def get_movies():
+    """Parse theater site."""
+
     options = webdriver.FirefoxOptions()
     options.add_argument('--headless')
     options.add_argument('--no-sandbox')

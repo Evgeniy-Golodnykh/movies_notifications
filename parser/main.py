@@ -9,12 +9,14 @@ from telegram_message import send_message
 from utils import get_movies
 
 START_MESSAGE = 'Parser started!'
-PAUSE_MESSAGE = f'Parser will be restarted after {SLEEP_DAYS} days'
-ERROR_MESSAGE = 'Error when compile a module: {error}'
-USER_MESSAGE = 'Вышел новый фильм "{film}". Вся информация по ссылке {url}'
+PAUSE_MESSAGE = f'Parser will be restarted after {SLEEP_DAYS} days.'
+ERROR_MESSAGE = 'Error when compile a module: {error}.'
+USER_MESSAGE = 'Вышел новый фильм "{film}". Вся информация по ссылке {url}.'
 
 
 def main():
+    """Parse theater site, add Movie instance to database and send message."""
+
     configure_logging()
     logging.info(START_MESSAGE)
     try:
