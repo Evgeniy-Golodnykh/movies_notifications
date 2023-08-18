@@ -9,9 +9,9 @@ from telegram_message import send_message
 from utils import get_movies
 
 START_MESSAGE = 'Parser started!'
-PAUSE_MESSAGE = f'Parser will be restarted after {SLEEP_DAYS} days.'
+PAUSE_MESSAGE = f'Parser will be restarted after {SLEEP_DAYS} day(s).'
 ERROR_MESSAGE = 'Error when compile a module: {error}.'
-USER_MESSAGE = 'Вышел новый фильм "{film}". Вся информация по ссылке {url}.'
+MOVIE_MESSAGE = 'Вышел новый фильм "{name}". Вся информация по ссылке {url}.'
 
 
 def main():
@@ -22,10 +22,11 @@ def main():
     try:
         movies = get_movies()
         for movie in movies:
-            if add_to_db(movie):
-                asyncio.run(send_message(
-                    USER_MESSAGE.format(film=movie[0], url=movie[1])
-                ))
+            name, url = movie
+            if add_to_db(name, url):
+                asyncio.run(
+                    send_message(MOVIE_MESSAGE.format(name=name, url=url))
+                )
     except Exception as error:
         logging.error(ERROR_MESSAGE.format(error=error), exc_info=True)
     logging.info(PAUSE_MESSAGE)
