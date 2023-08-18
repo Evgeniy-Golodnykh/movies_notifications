@@ -1,3 +1,5 @@
+import logging
+
 from configs import POSTGRES_DB
 from sqlalchemy import Column, Integer, String, create_engine
 from sqlalchemy.engine.url import URL
@@ -21,6 +23,7 @@ class Movie(Base):
 def add_to_db(item):
     """Add Movie instance to database."""
 
+    logging.info(URL.create(**POSTGRES_DB))
     engine = create_engine(URL.create(**POSTGRES_DB))
     Base.metadata.create_all(engine)
     session = Session(engine)
