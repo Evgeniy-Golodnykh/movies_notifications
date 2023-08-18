@@ -11,7 +11,7 @@ from utils import get_movies
 START_MESSAGE = 'Parser started!'
 PAUSE_MESSAGE = f'Parser will be restarted after {SLEEP_DAYS} day(s).'
 ERROR_MESSAGE = 'Error when compile a module: {error}.'
-MOVIE_MESSAGE = 'Вышел новый фильм "{name}". Вся информация по ссылке {url}.'
+MOVIE_MESSAGE = 'Вышел новый фильм «{name}». Вся информация по ссылке {url}.'
 
 
 def main():
