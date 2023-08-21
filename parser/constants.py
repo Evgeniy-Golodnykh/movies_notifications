@@ -6,7 +6,7 @@ load_dotenv()
 
 CINEMA_URL = 'https://radygakino.ru/'
 
-DRIVER_NAME = os.getenv('DRIVER_NAME')
+DB_DRIVER_NAME = os.getenv('DB_DRIVER_NAME')
 DB_HOST = os.getenv('DB_HOST')
 DB_PORT = os.getenv('DB_PORT')
 POSTGRES_USER = os.getenv('POSTGRES_USER')

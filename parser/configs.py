@@ -1,12 +1,12 @@
 import logging
 
 from constants import (
-    DATETIME_FORMAT, DB_HOST, DB_PORT, DRIVER_NAME, POSTGRES_DB,
+    DATETIME_FORMAT, DB_DRIVER_NAME, DB_HOST, DB_PORT, POSTGRES_DB,
     POSTGRES_PASSWORD, POSTGRES_USER,
 )
 
 DATABASE = {
-    'drivername': DRIVER_NAME,
+    'drivername': DB_DRIVER_NAME,
     'host': DB_HOST,
     'port': DB_PORT,
     'username': POSTGRES_USER,
