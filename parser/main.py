@@ -38,5 +38,6 @@ def main():
 
 if __name__ == '__main__':
     while True:
+        start_time = time.time()
         main()
-        time.sleep(SLEEP_DAYS * 24 * 60 * 60)
+        time.sleep(SLEEP_DAYS * 24 * 60 * 60 - int(time.time() - start_time))
