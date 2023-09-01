@@ -1,9 +1,5 @@
 import os
 
-from dotenv import load_dotenv
-
-load_dotenv()
-
 CINEMA_URL = 'https://radygakino.ru/'
 
 DB_DRIVER_NAME = os.getenv('DB_DRIVER_NAME')
