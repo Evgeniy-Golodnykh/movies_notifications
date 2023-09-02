@@ -1,6 +1,6 @@
 import time
 
-from constants import CINEMA_URL, PAUSE_DURATION
+from constants import BROWSER_PAUSE_DURATION, CINEMA_URL
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
@@ -23,7 +23,7 @@ def get_movies():
     try:
         browser = webdriver.Firefox(options=options)
         browser.get(CINEMA_URL)
-        time.sleep(PAUSE_DURATION)
+        time.sleep(BROWSER_PAUSE_DURATION)
         movies = browser.find_elements(By.CSS_SELECTOR, CSS_MOVIES_URL)
         results = [
             (movie.find_element(By.CSS_SELECTOR, CSS_MOVIES_NAME).text.strip(),

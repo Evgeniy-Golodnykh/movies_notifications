@@ -3,6 +3,7 @@ python-telegram-bot==20.4
 selenium==4.11.2
 sqlalchemy==2.0.19
 psycopg2-binary==2.9.7
+schedule==1.2.0
 
 flake8==3.9.2
 flake8-broken-line

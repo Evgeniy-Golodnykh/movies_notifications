@@ -2,8 +2,9 @@ import asyncio
 import logging
 import time
 
+import schedule
 from configs import configure_logging
-from constants import SLEEP_DAYS
+from constants import SLEEP_DAYS, START_TIME
 from database import add_to_db
 from telegram_message import send_message
 from utils import get_movies
@@ -36,8 +37,9 @@ def main():
     logging.info(RESTART_MESSAGE)
 
 
+schedule.every(SLEEP_DAYS).day.at(START_TIME).do(main)
+
 if __name__ == '__main__':
     while True:
-        start_time = time.time()
-        main()
-        time.sleep(SLEEP_DAYS * 24 * 60 * 60 - int(time.time() - start_time))
+        schedule.run_pending()
+        time.sleep(SLEEP_DAYS)
