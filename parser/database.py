@@ -12,7 +12,7 @@ class Movie(Base):
     __tablename__ = 'movie'
     id = Column(Integer, primary_key=True)
     name = Column(String(200), unique=True)
-    url = Column(String(200), unique=True)
+    url = Column(String(200))
 
     def __repr__(self):
         return self.name
