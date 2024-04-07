@@ -40,7 +40,6 @@ def main():
 schedule.every(SLEEP_DAYS).day.at(START_TIME).do(main)
 
 if __name__ == '__main__':
-    main()
     while True:
         schedule.run_pending()
         time.sleep(SLEEP_DAYS)
