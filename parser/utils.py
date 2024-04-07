@@ -4,7 +4,7 @@ from constants import BROWSER_PAUSE_DURATION, CINEMA_URL
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
-CSS_MOVIES_URL = 'a[class$="releases-item "]'
+CSS_MOVIES_URL = 'a[class$="releases-item"]'
 CSS_MOVIES_NAME = 'div.releases-item-description__title'
 ERROR_MESSAGE = 'An error {error} occurred when loading the page {url}'
 
