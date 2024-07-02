@@ -13,7 +13,7 @@ START_MESSAGE = 'Parser started!'
 FINISHED_MESSAGE = 'Parser found {count} new movie(s).'
 RESTART_MESSAGE = f'Parser will be restarted after {SLEEP_DAYS} day(s).'
 ERROR_MESSAGE = 'Error when compile a module: {error}.'
-MOVIE_MESSAGE = 'Вышел новый фильм «{name}». Вся информация по ссылке {url}'
+MOVIE_MESSAGE = 'Вышел новый фильм [{name}.]({url})'
 
 
 def main():
