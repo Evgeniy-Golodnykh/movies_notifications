@@ -9,12 +9,12 @@ def check_tokens():
 
 
 async def send_message(message):
-    """Send message to Telegram user"""
+    """Send message to Telegram user."""
 
     if check_tokens():
         async with telegram.Bot(token=TELEGRAM_TOKEN) as bot:
             await bot.send_message(
                 TELEGRAM_USER,
                 message,
-                parse_mode='MarkdownV2'
+                parse_mode='MarkdownV2',
             )

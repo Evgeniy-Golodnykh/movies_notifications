@@ -17,7 +17,7 @@ RUN apt-get update                             \
     /var/lib/apt/lists/* \
     /var/tmp/*
 
-# Install the latest version of Geckodriver:
+# Install the latest version of Geckodriver
 RUN BASE_URL=https://github.com/mozilla/geckodriver/releases/download \
   && VERSION=$(curl -sL \
     https://api.github.com/repos/mozilla/geckodriver/releases/latest | \
