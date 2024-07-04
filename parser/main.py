@@ -9,17 +9,19 @@ from database import add_to_db
 from telegram_message import send_message
 from utils import get_movies
 
+APP_MESSAGE = 'The Movies Notifications App started successfully!'
 START_MESSAGE = 'Parser started!'
 FINISHED_MESSAGE = 'Parser found {count} new movie(s).'
 RESTART_MESSAGE = f'Parser will be restarted after {SLEEP_DAYS} day(s).'
 ERROR_MESSAGE = 'Error when compile a module: {error}.'
 MOVIE_MESSAGE = 'Вышел новый фильм [{name}.]({url})'
 
+configure_logging()
+
 
 def main():
     """Parse theater site, add Movie instance to database and send message."""
 
-    configure_logging()
     logging.info(START_MESSAGE)
     try:
         movies = get_movies()
@@ -40,6 +42,7 @@ def main():
 schedule.every(SLEEP_DAYS).day.at(START_TIME).do(main)
 
 if __name__ == '__main__':
+    logging.info(APP_MESSAGE)
     while True:
         schedule.run_pending()
         time.sleep(SLEEP_DAYS)
