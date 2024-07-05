@@ -13,7 +13,7 @@ APP_START_MESSAGE = 'The Movies Notifications App started successfully!'
 PARSER_START_MESSAGE = 'Parser started!'
 PARSER_FINISHED_MESSAGE = 'Parser found {count} new movie(s).'
 PARSER_ERROR_MESSAGE = 'Error when compile a module: {error}.'
-TELEGRAM_MOVIE_MESSAGE = 'Вышел новый фильм [{name}.]({url})'
+TELEGRAM_MOVIE_MESSAGE = 'Вышел новый фильм [«{name}».]({url})'
 
 configure_logging()
 
@@ -43,7 +43,7 @@ schedule.every(SLEEP_DAYS).day.at(START_TIME).do(main)
 
 if __name__ == '__main__':
     logging.info(APP_START_MESSAGE)
-    main()
+
     while True:
         schedule.run_pending()
         time.sleep(SLEEP_DAYS)
