@@ -9,12 +9,11 @@ from database import add_to_db
 from telegram_message import send_message
 from utils import get_movies
 
-APP_MESSAGE = 'The Movies Notifications App started successfully!'
-START_MESSAGE = 'Parser started!'
-FINISHED_MESSAGE = 'Parser found {count} new movie(s).'
-RESTART_MESSAGE = f'Parser will be restarted after {SLEEP_DAYS} day(s).'
-ERROR_MESSAGE = 'Error when compile a module: {error}.'
-MOVIE_MESSAGE = 'Вышел новый фильм [{name}.]({url})'
+APP_START_MESSAGE = 'The Movies Notifications App started successfully!'
+PARSER_START_MESSAGE = 'Parser started!'
+PARSER_FINISHED_MESSAGE = 'Parser found {count} new movie(s).'
+PARSER_ERROR_MESSAGE = 'Error when compile a module: {error}.'
+TELEGRAM_MOVIE_MESSAGE = 'Вышел новый фильм [{name}.]\({url}\)'
 
 configure_logging()
 
@@ -22,7 +21,7 @@ configure_logging()
 def main():
     """Parse theater site, add Movie instance to database and send message."""
 
-    logging.info(START_MESSAGE)
+    logging.info(PARSER_START_MESSAGE)
     try:
         movies = get_movies()
         count = 0
@@ -31,18 +30,20 @@ def main():
             if add_to_db(name, url):
                 count += 1
                 asyncio.run(
-                    send_message(MOVIE_MESSAGE.format(name=name, url=url))
+                    send_message(
+                        TELEGRAM_MOVIE_MESSAGE.format(name=name, url=url)
+                    )
                 )
     except Exception as error:
-        logging.error(ERROR_MESSAGE.format(error=error), exc_info=True)
-    logging.info(FINISHED_MESSAGE.format(count=count))
-    logging.info(RESTART_MESSAGE)
+        logging.error(PARSER_ERROR_MESSAGE.format(error=error), exc_info=True)
+    logging.info(PARSER_FINISHED_MESSAGE.format(count=count))
 
 
 schedule.every(SLEEP_DAYS).day.at(START_TIME).do(main)
 
 if __name__ == '__main__':
-    logging.info(APP_MESSAGE)
+    logging.info(APP_START_MESSAGE)
+    main()
     while True:
         schedule.run_pending()
         time.sleep(SLEEP_DAYS)
