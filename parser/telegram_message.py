@@ -16,5 +16,5 @@ async def send_message(message):
             await bot.send_message(
                 TELEGRAM_USER,
                 message,
-                parse_mode='MarkdownV2',
+                parse_mode='Markdown',
             )
