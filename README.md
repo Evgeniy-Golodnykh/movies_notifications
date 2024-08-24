@@ -1,7 +1,7 @@
 # Movies notifications
 
 ### Description
-This is a Telegram notification of the newest movies from [Radygakino theater](https://radygakino.ru). It's purpose is to simplify monitoring information about theater session.
+This is a Telegram notification of the newest movies from [Kinomax theater](https://kinomax.ru). It's purpose is to simplify monitoring information about theater session.
 
 ### Quick Start
 1. Clone repo
@@ -31,7 +31,7 @@ python3 main.py
 ```
 
 ### Technology
-[Python](https://www.python.org), [Python Telegram Bot](https://python-telegram-bot.org), [Selenium](https://selenium-python.readthedocs.io/), [SQLAlchemy](https://www.sqlalchemy.org), [PostgreSQL](https://www.postgresql.org/), [Docker](https://www.docker.com/), GitHub Actions
+[Python](https://www.python.org), [Selenium](https://selenium-python.readthedocs.io/), [SQLAlchemy](https://www.sqlalchemy.org), [PostgreSQL](https://www.postgresql.org/), [Python Telegram Bot](https://python-telegram-bot.org), [Docker](https://www.docker.com/), [GitHub Actions](https://github.com/features/actions)
 
 ### Author
 [Evgeniy Golodnykh](https://github.com/Evgeniy-Golodnykh)
