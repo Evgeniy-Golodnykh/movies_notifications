@@ -1,11 +1,9 @@
-import time
-
-from constants import BROWSER_PAUSE_DURATION, CINEMA_URL
+from constants import BROWSER_PAUSE_DURATION, CINEMA_URL, PREFIX
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
-CSS_MOVIES_URL = 'a[class$="releases-item"]'
-CSS_MOVIES_NAME = 'div.releases-item-description__title'
+CSS_MOVIES_URL = 'a[class$="Z4IP_eYWwdD_cOsOJsKJ SJ7_iJC5cQHgRsOlc3Z_"]'
+CSS_MOVIES_NAME = 'h4.J7cZzMbW_T1JaXM9fHk9'
 ERROR_MESSAGE = 'An error {error} occurred when loading the page {url}'
 
 
@@ -22,13 +20,13 @@ def get_movies():
 
     try:
         browser = webdriver.Firefox(options=options)
+        browser.implicitly_wait(BROWSER_PAUSE_DURATION)
         browser.get(CINEMA_URL)
-        time.sleep(BROWSER_PAUSE_DURATION)
         movies = browser.find_elements(By.CSS_SELECTOR, CSS_MOVIES_URL)
         results = [
             (movie.find_element(By.CSS_SELECTOR, CSS_MOVIES_NAME).text.strip(),
-             movie.get_attribute('href').split('?')[0])
-            for movie in movies
+             CINEMA_URL + PREFIX + movie.get_attribute('href').split('/')[-1])
+            for movie in movies if movie.text
         ]
         browser.quit()
         return results

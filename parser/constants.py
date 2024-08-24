@@ -1,6 +1,7 @@
 import os
 
-CINEMA_URL = 'https://radygakino.ru/'
+CINEMA_URL = 'https://kinomax.ru'
+PREFIX = '/filmdata/'
 
 DB_DRIVER_NAME = os.getenv('DB_DRIVER_NAME')
 DB_HOST = os.getenv('DB_HOST')
@@ -14,6 +15,6 @@ TELEGRAM_USER = os.getenv('TELEGRAM_USER')
 
 DATETIME_FORMAT = '%d.%m.%Y %H:%M:%S'
 
-START_TIME = '15:00'
+START_TIME = '11:11'
 SLEEP_DAYS = 1
-BROWSER_PAUSE_DURATION = 5
+BROWSER_PAUSE_DURATION = 10
