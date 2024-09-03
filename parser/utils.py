@@ -9,6 +9,8 @@ PATTERN = '(предсеанс. обсл)'
 
 
 def get_movie_name_url(movie):
+    """Get movie name and url"""
+
     name = movie.find_element(By.CSS_SELECTOR, CSS_MOVIES_NAME).text
     url = CINEMA_URL + PREFIX + movie.get_attribute('href').split('/')[-1]
     if PATTERN in name:
@@ -17,7 +19,7 @@ def get_movie_name_url(movie):
 
 
 def get_movies():
-    """Parse theater site."""
+    """Parse theater site and get movies data."""
 
     options = webdriver.FirefoxOptions()
     options.add_argument('--headless')

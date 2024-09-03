@@ -14,6 +14,7 @@ TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 TELEGRAM_USER = os.getenv('TELEGRAM_USER')
 
 DATETIME_FORMAT = '%d.%m.%Y %H:%M:%S'
+LOGFORMAT = '%(asctime)s [%(levelname)s] %(filename)s/%(funcName)s %(message)s'
 
 START_TIME = '11:11'
 SLEEP_DAYS = 1

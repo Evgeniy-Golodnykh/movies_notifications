@@ -1,7 +1,7 @@
 import logging
 
 from constants import (
-    DATETIME_FORMAT, DB_DRIVER_NAME, DB_HOST, DB_PORT, POSTGRES_DB,
+    DATETIME_FORMAT, DB_DRIVER_NAME, DB_HOST, DB_PORT, LOGFORMAT, POSTGRES_DB,
     POSTGRES_PASSWORD, POSTGRES_USER,
 )
 
@@ -14,10 +14,10 @@ DATABASE = {
     'database': POSTGRES_DB,
 }
 
-LOGFORMAT = '%(asctime)s [%(levelname)s] %(filename)s/%(funcName)s %(message)s'
-
 
 def configure_logging():
+    """Set logging configuration."""
+
     logging.basicConfig(
         datefmt=DATETIME_FORMAT,
         format=LOGFORMAT,
