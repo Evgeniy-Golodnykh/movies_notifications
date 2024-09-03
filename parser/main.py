@@ -43,6 +43,7 @@ schedule.every(SLEEP_DAYS).day.at(START_TIME).do(main)
 
 if __name__ == '__main__':
     logging.info(APP_START_MESSAGE)
+    main()
 
     while True:
         schedule.run_pending()
