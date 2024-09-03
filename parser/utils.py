@@ -32,8 +32,9 @@ def get_movies():
         browser.implicitly_wait(BROWSER_PAUSE_DURATION)
         browser.get(CINEMA_URL)
         movies = browser.find_elements(By.CSS_SELECTOR, CSS_MOVIES_URL)
+        results = [get_movie_name_url(movie) for movie in movies if movie.text]
         browser.quit()
-        return [get_movie_name_url(movie) for movie in movies if movie.text]
+        return results
     except Exception as error:
         raise ConnectionError(
             ERROR_MESSAGE.format(error=error, url=CINEMA_URL)
