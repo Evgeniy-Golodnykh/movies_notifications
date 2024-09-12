@@ -1,5 +1,7 @@
+from datetime import date
+
 from configs import DATABASE
-from sqlalchemy import Column, Integer, String, create_engine
+from sqlalchemy import Column, Date, Integer, String, create_engine
 from sqlalchemy.engine.url import URL
 from sqlalchemy.orm import Session, declarative_base
 
@@ -13,6 +15,7 @@ class Movie(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(200), unique=True)
     url = Column(String(200))
+    create_date = Column(Date, default=date.today())
 
     def __repr__(self):
         return self.name
