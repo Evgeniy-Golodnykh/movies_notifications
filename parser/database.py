@@ -28,6 +28,7 @@ def add_to_db(name, url):
     Base.metadata.create_all(engine)
     session = Session(engine)
     if session.query(Movie).filter(Movie.name == name).count():
+        session.close()
         return False
     session.add(Movie(name=name, url=url))
     session.commit()
