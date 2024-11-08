@@ -21,16 +21,19 @@ class Movie(Base):
         return self.name
 
 
-def add_to_db(name, url):
-    """Add Movie instance to database."""
+def get_session():
+    """Open a session for database access"""
 
     engine = create_engine(URL.create(**DATABASE))
     Base.metadata.create_all(engine)
-    session = Session(engine)
+    return Session(engine)
+
+
+def add_to_db(session, name, url):
+    """Add Movie instance to database."""
+
     if session.query(Movie).filter(Movie.name == name).count():
-        session.close()
         return False
     session.add(Movie(name=name, url=url))
     session.commit()
-    session.close()
     return True

@@ -5,7 +5,7 @@ import time
 import schedule
 from configs import configure_logging
 from constants import SLEEP_DAYS, START_TIME
-from database import add_to_db
+from database import add_to_db, get_session
 from telegram_message import send_message
 from utils import get_movies
 
@@ -22,16 +22,18 @@ def main():
     logging.info(PARSER_START_MESSAGE)
     try:
         movies = get_movies()
+        session = get_session()
         count = 0
         for movie in movies:
             name, url = movie
-            if add_to_db(name, url):
+            if add_to_db(session, name, url):
                 count += 1
                 asyncio.run(
                     send_message(
                         TELEGRAM_MOVIE_MESSAGE.format(name=name, url=url)
                     )
                 )
+        session.close()
     except Exception as error:
         logging.error(PARSER_ERROR_MESSAGE.format(error=error), exc_info=True)
     logging.info(PARSER_FINISHED_MESSAGE.format(count=count))
