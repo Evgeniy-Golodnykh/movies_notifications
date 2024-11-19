@@ -5,7 +5,7 @@ import time
 import schedule
 from configs import configure_logging
 from constants import SLEEP_DAYS, START_TIME
-from database import add_to_db, get_session
+from database import add_to_db, close_session, get_session
 from telegram_message import send_message
 from utils import get_movies
 
@@ -33,7 +33,7 @@ def main():
                         TELEGRAM_MOVIE_MESSAGE.format(name=name, url=url)
                     )
                 )
-        session.close()
+        close_session(session)
     except Exception as error:
         logging.error(PARSER_ERROR_MESSAGE.format(error=error), exc_info=True)
     logging.info(PARSER_FINISHED_MESSAGE.format(count=count))

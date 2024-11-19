@@ -29,6 +29,11 @@ def get_session():
     return Session(engine)
 
 
+def close_session(session):
+    """Close the database access session"""
+    session.close()
+
+
 def add_to_db(session, name, url):
     """Add Movie instance to database."""
 
